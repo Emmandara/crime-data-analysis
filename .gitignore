@@ -1,0 +1,24 @@
+# Ignore raw and processed data
+data/raw/
+data/processed/
+
+# Ignore Jupyter auto-saves
+.ipynb_checkpoints/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore large binary / office / report outputs
+*.csv
+*.xlsx
+*.xls
+*.pdf
+*.png
+*.html
+*.pbix
+*.twbx
+
+# Ignore virtual environment if you add one
+venv/
+.env/
