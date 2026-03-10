@@ -1,120 +1,138 @@
-# UK Crime Data – Exploratory Data Analysis (Part 1)
+# UK Crime Data Analysis & Socioeconomic Dashboard
 
-##  Project Overview
-This project is Part 1 of a larger analytical workflow for understanding crime patterns in the UK to assist a real estate company.  
-The goal is to extract, clean, and explore street-level crime data for a selection of police forces over a two-year period.  
-The analysis aims to identify broad regional trends and ultimately select **two police forces** for deeper study in Part 2.
-
----
-
-##  Objectives (from the project brief)
-
-- Use **at least 4 UK Police forces**
-- Use **at least 2 years** of crime data (2023–2024)
-- Perform a clear and structured **Exploratory Data Analysis (EDA)**:
-  - Crime distributions by type  
-  - Regional comparisons  
-  - Crime counts over time  
-  - Top offence categories  
-  - Map-based visualisation (hexbin / scatter)  
-- Produce clean, readable preprocessing in Jupyter  
-- Deliver a professional, coherent report summarising findings
-- Select **two forces** for further analysis in later stages
+**Author:** Emmanuel Oloruntola  
+**Project Type:** Exploratory Data Analysis + Data Preparation for Stakeholder Dashboard  
+**Tools Used:** Python, Pandas, Matplotlib, Seaborn  
+**Data Sources:** UK Police Open Data, ONS Housing Data, IMD Deprivation Index
 
 ---
 
-##  Data Used
+# Project Overview
 
-All data was obtained from the official UK Police service:
+This project explores **UK street-level crime patterns (2023–2024)** across multiple police forces and prepares a **clean analytical dataset** combining crime data with socioeconomic indicators.
 
- https://data.police.uk/data/
+The analysis was conducted to support **housing and real-estate decision making**, helping stakeholders understand how **crime, deprivation, housing prices, and employment indicators interact across regions.**
 
-**Forces used:**
-1. Metropolitan Police  
-2. West Midlands Police  
-3. Leicestershire Police  
-4. City of London Police  
+The project is divided into two main phases:
 
-**Time period:**  
-**January 2023 – December 2024**
-
-The following datasets were used:
-- *Street-level crime* (main dataset)
-- *Optional*: Outcomes dataset (not required )
+1. **Exploratory Data Analysis (EDA)** — understanding crime patterns across police forces.
+2. **Data Cleaning & Integration** — preparing a structured dataset for dashboard development.
 
 ---
 
-##  Preprocessing Summary
+# Key Objectives
 
-Data cleaning was performed in a separate Jupyter notebook:
-- Loaded multiple monthly CSV files  
-- Removed unused columns  
-- Standardised column names  
-- Handled missing values in latitude/longitude  
-- Extracted month/year    
-- Verified dataset size and quality
-
----
-
-##  Exploratory Data Analysis (EDA)
-
-The EDA notebook includes:
-- Total crimes by region  
-- Crime type distributions  
-- Top offence categories  
-- Monthly trends (2023–2024)  
-- Spatial visualisations  
-- Comparisons between the four forces  
+- Analyse crime trends across major UK police forces.
+- Identify the most common crime types.
+- Detect seasonal patterns in crime activity.
+- Prepare a **Local Authority District (LAD) level dataset** for stakeholder analysis.
+- Combine crime data with:
+  - Deprivation scores
+  - Housing prices
+  - Claimant unemployment rates
 
 ---
 
-##  Key Findings (Part 1)
+# Data Sources
 
-- The **Metropolitan Police** has by far the highest total crime counts.
-- **West Midlands Police** shows strong urban clustering around Birmingham.
-- **Leicestershire Police** presents moderate crime levels, mostly in Leicester city centre.
-- **City of London Police** has very low volumes but specific business-district patterns.
-- Crime trends remain relatively stable across 2023–2024.
+| Dataset | Description |
+|------|------|
+| UK Police Street Level Crime | Monthly crime records (2023–2024) |
+| Index of Multiple Deprivation (IMD) | Socioeconomic deprivation scores |
+| ONS House Price Statistics | Median housing prices |
+| Claimant Rate Dataset | Local unemployment indicator |
 
-###  Selected forces for further study:
-**West Midlands Police** and **Leicestershire Police**
+All crime data was sourced from:
 
-These were chosen because:
-- They provide meaningful contrast (urban vs mixed urban–rural)
-- They show clear spatial patterns suitable for deeper analysis
-- They avoid the extreme outliers of Met (too large) and City of London (too small)
+**https://data.police.uk**
 
 ---
 
-## Project Structure
-Project_Folder/
-│
-├── data/
-│ ├── raw/ # monthly crime CSVs
-│ └── processed/ # cleaned combined dataset
-│
-├── notebooks/
-│ ├── 01_preprocessing.ipynb
-│ └── 02_eda.ipynb
-│
-├──Project Statement of Work
-|
-├──Flowchart
-├── EDA_Report.pdf 
-│
-└── README.md
+# Exploratory Data Analysis
+
+The initial analysis compared **four police forces:**
+
+- Metropolitan Police
+- West Midlands Police
+- Leicestershire Police
+- City of London Police
+
+## Major Findings
+
+### 1. Crime Volume by Region
+- **Metropolitan Police** recorded the highest crime volume.
+- **West Midlands Police** had the second highest.
+- **City of London Police** recorded the lowest due to its small residential population.
+
+### 2. Most Common Crime Types
+
+Top crime categories included:
+
+1. Violence and Sexual Offences
+2. Theft Related Crimes
+3. Shoplifting
+4. Anti-social Behaviour
+
+Violence-related offences consistently represented the **largest share of crimes across all forces.**
+
+### 3. Seasonal Crime Patterns
+
+Crime trends show **seasonal increases during summer months**.
+
+Possible drivers include:
+
+- Increased tourism
+- More outdoor activity
+- Higher retail activity
+
+Shoplifting in particular shows **strong summer spikes.**
 
 ---
 
-##  Tools Used
-- Python (Pandas, Matplotlib, Seaborn)
-- Jupyter Notebook
-- Git / GitHub
+# Data Cleaning & Preparation
+
+Before building the dashboard dataset, extensive preprocessing was performed.
+
+## Crime Data Cleaning
+
+Steps included:
+
+- Removed rows missing **latitude or longitude**
+- Converted **month column to datetime**
+- Trimmed whitespace from text fields
+- Standardised text formatting
+- Removed duplicate crime IDs
 
 ---
 
-##  Deliverables
-- Preprocessing notebook  
-- EDA notebook with visualisations  
-- Full written report (PDF)  
-- README (this file)  
+# Socioeconomic Data Processing
+
+## IMD (Deprivation Index)
+
+- Selected relevant columns only
+- Standardised Local Authority names
+- Filtered for study region
+- Aggregated LSOA scores to **LAD level using mean**
+
+---
+
+## House Price Data
+
+- Removed rows with missing values
+- Standardised LAD names
+- Aggregated prices to **median LAD house price**
+
+---
+
+## Claimant Rate Data
+
+- Selected latest month available
+- Removed summary rows
+- Converted values to numeric
+- Standardised LAD naming format
+
+---
+
+# Dataset Integration
+
+All datasets were merged using a common key:
